@@ -1,8 +1,8 @@
 x = [5, 15, 30, 60];
-y = [3.48 2.67 1.09 1.24];
+y = [4.1 1.94 1.09 1.24];
 
 plot(x,y,'-o');
-axis([0 60 0 4]);
+axis([0 60 0 5]);
 
 xlabel('Cycle time (mins)','Fontsize',24);
 ylabel('Resistance (ohm)','Fontsize',24);
