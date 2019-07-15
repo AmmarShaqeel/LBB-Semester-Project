@@ -1,5 +1,5 @@
 %% Load_capacitance
-clear all
+clear all;
 filename = input('Filename? ', 's');
 continuous = input('continuous y/n? ', 's');
 string_length = input('Length (mm)? ');
@@ -13,7 +13,7 @@ change_marker = xlsread(filename,sheet,x2Range);
 
 for i = 1:length(change_marker)
     if(change_marker(i) == 1)
-        append(start_points, i);
+        start_points = [start_points i];
     end
 end
 
@@ -28,21 +28,18 @@ if strcmp(continuous,'y')
     end
     
 else 
-    flag = 'y';
-    i = 1;
-    past_point = 1;
     strain_length = string_length * 0.1 / 0.05;
-    while(strcmp(flag,'y'));
-        starting_point = input('starting cell? ');
+    k = 1;
+    for i = 1:length(start_points)
+        starting_point = start_points(i);
         resistance(1+(strain_length*(i-1)):strain_length*(i)+1) = data(starting_point:strain_length+starting_point);
-        i = i + 1;
-       flag = input('continue (y/n)? ', 's');
+        k = i;
     end
-    strain = linspace(0,0.1*(i-1),strain_length*(i-1) + 1);
+    strain = linspace(0,0.1*(k),strain_length*(k) + 1);
 
 end
 
-resistance = resistance./(string_length/10)
+resistance = resistance./(string_length/10);
 save_file = filename(1:(length(filename)-5));
 save(save_file);
         
