@@ -19,6 +19,7 @@ err4 =[544.98,1.28,0.28,0.13];
 axis([1 4 0 600]);
 
 hold on;
+box on;
 plot(x,y1,':o');
 plot(x,y2,'-x');
 plot(x,y3,'-.+');
